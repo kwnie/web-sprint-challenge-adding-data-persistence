@@ -1,7 +1,9 @@
 const db = require("../../data/dbConfig")
 
 const getTasks = () => {
-    return db("tasks")
+    return db("tasks as t")
+        .leftJoin("projects as p", "p.project_id", "t.project_id")
+        .select("t.*", "p.project_name", "p.project_description")
 }
 
 const getTaskById = (task_id) => {
