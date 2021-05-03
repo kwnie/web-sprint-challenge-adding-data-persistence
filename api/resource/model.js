@@ -1,9 +1,3 @@
-// - [ ] `[POST] /api/resources`
-//   - Example of response body: `{"resource_id":1,"resource_name":"foo","resource_description":null}`
-
-// - [ ] `[GET] /api/resources`
-//   - Example of response body: `[{"resource_id":1,"resource_name":"foo","resource_description":null}]`
-
 const db = require("../../data/dbConfig")
 
 const getResources = () => {
@@ -16,7 +10,12 @@ const getResourceById = (resource_id) => {
         .first()
 }
 
+const createResource = (newResource) => {
+    return db("resources").insert(newResource)
+}
+
 module.exports = {
     getResources,
-    getResourceById
+    getResourceById,
+    createResource
 }
